@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7A66C55E-52DC-4650-A913-C7C561984CE0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="amqp_bind\amqp_bind.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_connect_timeout\amqp_connect_timeout.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="amqp_bind">
+        <MSBuild Projects="amqp_bind\amqp_bind.dproj"/>
+    </Target>
+    <Target Name="amqp_bind:Clean">
+        <MSBuild Projects="amqp_bind\amqp_bind.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_bind:Make">
+        <MSBuild Projects="amqp_bind\amqp_bind.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_connect_timeout">
+        <MSBuild Projects="amqp_connect_timeout\amqp_connect_timeout.dproj"/>
+    </Target>
+    <Target Name="amqp_connect_timeout:Clean">
+        <MSBuild Projects="amqp_connect_timeout\amqp_connect_timeout.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_connect_timeout:Make">
+        <MSBuild Projects="amqp_connect_timeout\amqp_connect_timeout.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="amqp_bind;amqp_connect_timeout"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="amqp_bind:Clean;amqp_connect_timeout:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="amqp_bind:Make;amqp_connect_timeout:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

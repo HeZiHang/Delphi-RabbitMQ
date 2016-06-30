@@ -521,7 +521,7 @@ function amqp_encode_properties(class_id: UInt16; decoded: Pointer; encoded: amq
 
 (* Method field records. *)
 const
-  AMQP_CONNECTION_START_METHOD: amqp_method_number_t = $000A000A; (* *< connection.start method id @internal 10, 10; 655370 *)
+  AMQP_CONNECTION_START_METHOD=$000A000A; (* *< connection.start method id @internal 10, 10; 655370 *)
 
   (* * connection.start method fields *)
 type
@@ -537,7 +537,7 @@ type
   pamqp_connection_start_t = ^amqp_connection_start_t;
 
 const
-  AMQP_CONNECTION_START_OK_METHOD: amqp_method_number_t = $000A000B; (* *< connection.start-ok method id @internal 10, 11; 655371 *)
+  AMQP_CONNECTION_START_OK_METHOD=$000A000B; (* *< connection.start-ok method id @internal 10, 11; 655371 *)
 
   (* * connection.start-ok method fields *)
 type
@@ -552,7 +552,7 @@ type
   pamqp_connection_start_ok_t = ^amqp_connection_start_ok_t;
 
 const
-  AMQP_CONNECTION_SECURE_METHOD: amqp_method_number_t = $000A0014; (* *< connection.secure method id @internal 10, 20; 655380 *)
+  AMQP_CONNECTION_SECURE_METHOD=$000A0014; (* *< connection.secure method id @internal 10, 20; 655380 *)
 
   (* * connection.secure method fields *)
 type
@@ -564,7 +564,7 @@ type
   pamqp_connection_secure_t = ^amqp_connection_secure_t;
 
 const
-  AMQP_CONNECTION_SECURE_OK_METHOD: amqp_method_number_t = $000A0015; (* *< connection.secure-ok method id @internal 10, 21; 655381 *)
+  AMQP_CONNECTION_SECURE_OK_METHOD=$000A0015; (* *< connection.secure-ok method id @internal 10, 21; 655381 *)
 
   (* * connection.secure-ok method fields *)
 type
@@ -576,7 +576,7 @@ type
   pamqp_connection_secure_ok_t = ^amqp_connection_secure_ok_t;
 
 const
-  AMQP_CONNECTION_TUNE_METHOD: amqp_method_number_t = $000A001E; (* *< connection.tune method id @internal 10, 30; 655390 *)
+  AMQP_CONNECTION_TUNE_METHOD=$000A001E; (* *< connection.tune method id @internal 10, 30; 655390 *)
 
   (* * connection.tune method fields *)
 type
@@ -590,7 +590,7 @@ type
   pamqp_connection_tune_t = ^amqp_connection_tune_t;
 
 const
-  AMQP_CONNECTION_TUNE_OK_METHOD: amqp_method_number_t = $000A001F; (* *< connection.tune-ok method id @internal 10, 31; 655391 *)
+  AMQP_CONNECTION_TUNE_OK_METHOD=$000A001F; (* *< connection.tune-ok method id @internal 10, 31; 655391 *)
 
   (* * connection.tune-ok method fields *)
 type
@@ -604,7 +604,7 @@ type
   pamqp_connection_tune_ok_t = ^amqp_connection_tune_ok_t;
 
 const
-  AMQP_CONNECTION_OPEN_METHOD: amqp_method_number_t = $000A0028; (* *< connection.open method id @internal 10, 40; 655400 *)
+  AMQP_CONNECTION_OPEN_METHOD=$000A0028; (* *< connection.open method id @internal 10, 40; 655400 *)
 
   (* * connection.open method fields *)
 type
@@ -618,7 +618,7 @@ type
   pamqp_connection_open_t = ^amqp_connection_open_t;
 
 const
-  AMQP_CONNECTION_OPEN_OK_METHOD: amqp_method_number_t = $000A0029; (* *< connection.open-ok method id @internal 10, 41; 655401 *)
+  AMQP_CONNECTION_OPEN_OK_METHOD=$000A0029; (* *< connection.open-ok method id @internal 10, 41; 655401 *)
 
   (* * connection.open-ok method fields *)
 type
@@ -630,7 +630,7 @@ type
   pamqp_connection_open_ok_t = ^amqp_connection_open_ok_t;
 
 const
-  AMQP_CONNECTION_CLOSE_METHOD: amqp_method_number_t = $000A0032; (* *< connection.close method id @internal 10, 50; 655410 *)
+  AMQP_CONNECTION_CLOSE_METHOD=$000A0032; (* *< connection.close method id @internal 10, 50; 655410 *)
 
   (* * connection.close method fields *)
 type
@@ -645,7 +645,7 @@ type
   pamqp_connection_close_t = ^amqp_connection_close_t;
 
 const
-  AMQP_CONNECTION_CLOSE_OK_METHOD: amqp_method_number_t = $000A0033; (* *< connection.close-ok method id @internal 10, 51; 655411 *)
+  AMQP_CONNECTION_CLOSE_OK_METHOD=$000A0033; (* *< connection.close-ok method id @internal 10, 51; 655411 *)
 
   (* * connection.close-ok method fields *)
 type
@@ -657,7 +657,7 @@ type
   pamqp_connection_close_ok_t = ^amqp_connection_close_ok_t;
 
 const
-  AMQP_CONNECTION_BLOCKED_METHOD: amqp_method_number_t = $000A003C; (* *< connection.blocked method id @internal 10, 60; 655420 *)
+  AMQP_CONNECTION_BLOCKED_METHOD=$000A003C; (* *< connection.blocked method id @internal 10, 60; 655420 *)
 
   (* * connection.blocked method fields *)
 type
@@ -669,7 +669,7 @@ type
   pamqp_connection_blocked_t = ^amqp_connection_blocked_t;
 
 const
-  AMQP_CONNECTION_UNBLOCKED_METHOD: amqp_method_number_t = $000A003D; (* *< connection.unblocked method id @internal 10, 61; 655421 *)
+  AMQP_CONNECTION_UNBLOCKED_METHOD=$000A003D; (* *< connection.unblocked method id @internal 10, 61; 655421 *)
 
   (* * connection.unblocked method fields *)
 type
@@ -681,7 +681,7 @@ type
   pamqp_connection_unblocked_t = ^amqp_connection_unblocked_t;
 
 const
-  AMQP_CHANNEL_OPEN_METHOD: amqp_method_number_t = $0014000A; (* *< channel.open method id @internal 20, 10; 1310730 *)
+  AMQP_CHANNEL_OPEN_METHOD=$0014000A; (* *< channel.open method id @internal 20, 10; 1310730 *)
 
   (* * channel.open method fields *)
 type
@@ -693,7 +693,7 @@ type
   pamqp_channel_open_t = ^amqp_channel_open_t;
 
 const
-  AMQP_CHANNEL_OPEN_OK_METHOD: amqp_method_number_t = $0014000B; (* *< channel.open-ok method id @internal 20, 11; 1310731 *)
+  AMQP_CHANNEL_OPEN_OK_METHOD=$0014000B; (* *< channel.open-ok method id @internal 20, 11; 1310731 *)
 
   (* * channel.open-ok method fields *)
 type
@@ -705,7 +705,7 @@ type
   pamqp_channel_open_ok_t = ^amqp_channel_open_ok_t_;
 
 const
-  AMQP_CHANNEL_FLOW_METHOD: amqp_method_number_t = $00140014; (* *< channel.flow method id @internal 20, 20; 1310740 *)
+  AMQP_CHANNEL_FLOW_METHOD=$00140014; (* *< channel.flow method id @internal 20, 20; 1310740 *)
 
   (* * channel.flow method fields *)
 type
@@ -717,7 +717,7 @@ type
   pamqp_channel_flow_t = ^amqp_channel_flow_t;
 
 const
-  AMQP_CHANNEL_FLOW_OK_METHOD: amqp_method_number_t = $00140015; (* *< channel.flow-ok method id @internal 20, 21; 1310741 *)
+  AMQP_CHANNEL_FLOW_OK_METHOD=$00140015; (* *< channel.flow-ok method id @internal 20, 21; 1310741 *)
 
   (* * channel.flow-ok method fields *)
 type
@@ -729,7 +729,7 @@ type
   pamqp_channel_flow_ok_t = ^amqp_channel_flow_ok_t;
 
 const
-  AMQP_CHANNEL_CLOSE_METHOD: amqp_method_number_t = $00140028; (* *< channel.close method id @internal 20, 40; 1310760 *)
+  AMQP_CHANNEL_CLOSE_METHOD=$00140028; (* *< channel.close method id @internal 20, 40; 1310760 *)
 
   (* * channel.close method fields *)
 type
@@ -744,7 +744,7 @@ type
   pamqp_channel_close_t = ^amqp_channel_close_t;
 
 const
-  AMQP_CHANNEL_CLOSE_OK_METHOD: amqp_method_number_t = $00140029; (* *< channel.close-ok method id @internal 20, 41; 1310761 *)
+  AMQP_CHANNEL_CLOSE_OK_METHOD=$00140029; (* *< channel.close-ok method id @internal 20, 41; 1310761 *)
 
   (* * channel.close-ok method fields *)
 type
@@ -756,7 +756,7 @@ type
   pamqp_channel_close_ok_t = ^amqp_channel_close_ok_t;
 
 const
-  AMQP_ACCESS_REQUEST_METHOD: amqp_method_number_t = $001E000A; (* *< access.request method id @internal 30, 10; 1966090 *)
+  AMQP_ACCESS_REQUEST_METHOD=$001E000A; (* *< access.request method id @internal 30, 10; 1966090 *)
 
   (* * access.request method fields *)
 type
@@ -773,7 +773,7 @@ type
   pamqp_access_request_t = ^amqp_access_request_t;
 
 const
-  AMQP_ACCESS_REQUEST_OK_METHOD: amqp_method_number_t = $001E000B; (* *< access.request-ok method id @internal 30, 11; 1966091 *)
+  AMQP_ACCESS_REQUEST_OK_METHOD=$001E000B; (* *< access.request-ok method id @internal 30, 11; 1966091 *)
 
   (* * access.request-ok method fields *)
 type
@@ -785,7 +785,7 @@ type
   pamqp_access_request_ok_t = ^amqp_access_request_ok_t;
 
 const
-  AMQP_EXCHANGE_DECLARE_METHOD: amqp_method_number_t = $0028000A; (* *< exchange.declare method id @internal 40, 10; 2621450 *)
+  AMQP_EXCHANGE_DECLARE_METHOD=$0028000A; (* *< exchange.declare method id @internal 40, 10; 2621450 *)
 
   (* * exchange.declare method fields *)
 type
@@ -806,7 +806,7 @@ type
   pamqp_exchange_declare_t = ^amqp_exchange_declare_t;
 
 const
-  AMQP_EXCHANGE_DECLARE_OK_METHOD: amqp_method_number_t = $0028000B; (* *< exchange.declare-ok method id @internal 40, 11; 2621451 *)
+  AMQP_EXCHANGE_DECLARE_OK_METHOD=$0028000B; (* *< exchange.declare-ok method id @internal 40, 11; 2621451 *)
 
   (* * exchange.declare-ok method fields *)
 type
@@ -818,7 +818,7 @@ type
   pamqp_exchange_declare_ok_t = ^amqp_exchange_declare_ok_t;
 
 const
-  AMQP_EXCHANGE_DELETE_METHOD: amqp_method_number_t = $00280014; (* *< exchange.delete method id @internal 40, 20; 2621460 *)
+  AMQP_EXCHANGE_DELETE_METHOD=$00280014; (* *< exchange.delete method id @internal 40, 20; 2621460 *)
 
   (* * exchange.delete method fields *)
 type
@@ -833,7 +833,7 @@ type
   pamqp_exchange_delete_t = ^amqp_exchange_delete_t;
 
 const
-  AMQP_EXCHANGE_DELETE_OK_METHOD: amqp_method_number_t = $00280015; (* *< exchange.delete-ok method id @internal 40, 21; 2621461 *)
+  AMQP_EXCHANGE_DELETE_OK_METHOD=$00280015; (* *< exchange.delete-ok method id @internal 40, 21; 2621461 *)
 
   (* * exchange.delete-ok method fields *)
 type
@@ -845,7 +845,7 @@ type
   pamqp_exchange_delete_ok_t = ^amqp_exchange_delete_ok_t;
 
 const
-  AMQP_EXCHANGE_BIND_METHOD: amqp_method_number_t = $0028001E; (* *< exchange.bind method id @internal 40, 30; 2621470 *)
+  AMQP_EXCHANGE_BIND_METHOD=$0028001E; (* *< exchange.bind method id @internal 40, 30; 2621470 *)
 
   (* * exchange.bind method fields *)
 type
@@ -862,7 +862,7 @@ type
   pamqp_exchange_bind_t = ^amqp_exchange_bind_t;
 
 const
-  AMQP_EXCHANGE_BIND_OK_METHOD: amqp_method_number_t = $0028001F; (* *< exchange.bind-ok method id @internal 40, 31; 2621471 *)
+  AMQP_EXCHANGE_BIND_OK_METHOD=$0028001F; (* *< exchange.bind-ok method id @internal 40, 31; 2621471 *)
 
   (* * exchange.bind-ok method fields *)
 type
@@ -874,7 +874,7 @@ type
   pamqp_exchange_bind_ok_t = ^amqp_exchange_bind_ok_t;
 
 const
-  AMQP_EXCHANGE_UNBIND_METHOD: amqp_method_number_t = $00280028; (* *< exchange.unbind method id @internal 40, 40; 2621480 *)
+  AMQP_EXCHANGE_UNBIND_METHOD=$00280028; (* *< exchange.unbind method id @internal 40, 40; 2621480 *)
 
   (* * exchange.unbind method fields *)
 type
@@ -891,7 +891,7 @@ type
   pamqp_exchange_unbind_t = ^amqp_exchange_unbind_t;
 
 const
-  AMQP_EXCHANGE_UNBIND_OK_METHOD: amqp_method_number_t = $00280033; (* *< exchange.unbind-ok method id @internal 40, 51; 2621491 *)
+  AMQP_EXCHANGE_UNBIND_OK_METHOD=$00280033; (* *< exchange.unbind-ok method id @internal 40, 51; 2621491 *)
 
   (* * exchange.unbind-ok method fields *)
 type
@@ -903,7 +903,7 @@ type
   pamqp_exchange_unbind_ok_t = ^amqp_exchange_unbind_ok_t;
 
 const
-  AMQP_QUEUE_DECLARE_METHOD: amqp_method_number_t = $0032000A; (* *< queue.declare method id @internal 50, 10; 3276810 *)
+  AMQP_QUEUE_DECLARE_METHOD=$0032000A; (* *< queue.declare method id @internal 50, 10; 3276810 *)
 
   (* * queue.declare method fields *)
 type
@@ -922,7 +922,7 @@ type
   pamqp_queue_declare_t = ^amqp_queue_declare_t;
 
 const
-  AMQP_QUEUE_DECLARE_OK_METHOD: amqp_method_number_t = $0032000B; (* *< queue.declare-ok method id @internal 50, 11; 3276811 *)
+  AMQP_QUEUE_DECLARE_OK_METHOD=$0032000B; (* *< queue.declare-ok method id @internal 50, 11; 3276811 *)
 
   (* * queue.declare-ok method fields *)
 type
@@ -936,7 +936,7 @@ type
   pamqp_queue_declare_ok_t = ^amqp_queue_declare_ok_t;
 
 const
-  AMQP_QUEUE_BIND_METHOD: amqp_method_number_t = $00320014; (* *< queue.bind method id @internal 50, 20; 3276820 *)
+  AMQP_QUEUE_BIND_METHOD=$00320014; (* *< queue.bind method id @internal 50, 20; 3276820 *)
 
   (* * queue.bind method fields *)
 type
@@ -953,7 +953,7 @@ type
   pamqp_queue_bind_t = ^amqp_queue_bind_t;
 
 const
-  AMQP_QUEUE_BIND_OK_METHOD: amqp_method_number_t = $00320015; (* *< queue.bind-ok method id @internal 50, 21; 3276821 *)
+  AMQP_QUEUE_BIND_OK_METHOD=$00320015; (* *< queue.bind-ok method id @internal 50, 21; 3276821 *)
 
   (* * queue.bind-ok method fields *)
 type
@@ -965,7 +965,7 @@ type
   pamqp_queue_bind_ok_t = ^amqp_queue_bind_ok_t;
 
 const
-  AMQP_QUEUE_PURGE_METHOD: amqp_method_number_t = $0032001E; (* *< queue.purge method id @internal 50, 30; 3276830 *)
+  AMQP_QUEUE_PURGE_METHOD=$0032001E; (* *< queue.purge method id @internal 50, 30; 3276830 *)
 
   (* * queue.purge method fields *)
 type
@@ -979,7 +979,7 @@ type
   pamqp_queue_purge_t = ^amqp_queue_purge_t;
 
 const
-  AMQP_QUEUE_PURGE_OK_METHOD: amqp_method_number_t = $0032001F; (* *< queue.purge-ok method id @internal 50, 31; 3276831 *)
+  AMQP_QUEUE_PURGE_OK_METHOD=$0032001F; (* *< queue.purge-ok method id @internal 50, 31; 3276831 *)
 
   (* * queue.purge-ok method fields *)
 type
@@ -991,7 +991,7 @@ type
   pamqp_queue_purge_ok_t = ^amqp_queue_purge_ok_t;
 
 const
-  AMQP_QUEUE_DELETE_METHOD: amqp_method_number_t = $00320028; (* *< queue.delete method id @internal 50, 40; 3276840 *)
+  AMQP_QUEUE_DELETE_METHOD=$00320028; (* *< queue.delete method id @internal 50, 40; 3276840 *)
 
   (* * queue.delete method fields *)
 type
@@ -1007,7 +1007,7 @@ type
   pamqp_queue_delete_t = ^amqp_queue_delete_t;
 
 const
-  AMQP_QUEUE_DELETE_OK_METHOD: amqp_method_number_t = $00320029; (* *< queue.delete-ok method id @internal 50, 41; 3276841 *)
+  AMQP_QUEUE_DELETE_OK_METHOD=$00320029; (* *< queue.delete-ok method id @internal 50, 41; 3276841 *)
 
   (* * queue.delete-ok method fields *)
 type
@@ -1019,7 +1019,7 @@ type
   pamqp_queue_delete_ok_t = ^amqp_queue_delete_ok_t;
 
 const
-  AMQP_QUEUE_UNBIND_METHOD: amqp_method_number_t = $00320032; (* *< queue.unbind method id @internal 50, 50; 3276850 *)
+  AMQP_QUEUE_UNBIND_METHOD=$00320032; (* *< queue.unbind method id @internal 50, 50; 3276850 *)
 
   (* * queue.unbind method fields *)
 type
@@ -1035,7 +1035,7 @@ type
   pamqp_queue_unbind_t = ^amqp_queue_unbind_t;
 
 const
-  AMQP_QUEUE_UNBIND_OK_METHOD: amqp_method_number_t = $00320033; (* *< queue.unbind-ok method id @internal 50, 51; 3276851 *)
+  AMQP_QUEUE_UNBIND_OK_METHOD=$00320033; (* *< queue.unbind-ok method id @internal 50, 51; 3276851 *)
 
   (* * queue.unbind-ok method fields *)
 type
@@ -1047,7 +1047,7 @@ type
   pamqp_queue_unbind_ok_t = ^amqp_queue_unbind_ok_t;
 
 const
-  AMQP_BASIC_QOS_METHOD: amqp_method_number_t = $003C000A; (* *< basic.qos method id @internal 60, 10; 3932170 *)
+  AMQP_BASIC_QOS_METHOD=$003C000A; (* *< basic.qos method id @internal 60, 10; 3932170 *)
 
   (* * basic.qos method fields *)
 type
@@ -1061,7 +1061,7 @@ type
   pamqp_basic_qos_t = ^amqp_basic_qos_t;
 
 const
-  AMQP_BASIC_QOS_OK_METHOD: amqp_method_number_t = $003C000B; (* *< basic.qos-ok method id @internal 60, 11; 3932171 *)
+  AMQP_BASIC_QOS_OK_METHOD=$003C000B; (* *< basic.qos-ok method id @internal 60, 11; 3932171 *)
 
   (* * basic.qos-ok method fields *)
 type
@@ -1073,7 +1073,7 @@ type
   pamqp_basic_qos_ok_t = ^amqp_basic_qos_ok_t;
 
 const
-  AMQP_BASIC_CONSUME_METHOD: amqp_method_number_t = $003C0014; (* *< basic.consume method id @internal 60, 20; 3932180 *)
+  AMQP_BASIC_CONSUME_METHOD=$003C0014; (* *< basic.consume method id @internal 60, 20; 3932180 *)
 
   (* * basic.consume method fields *)
 type
@@ -1092,7 +1092,7 @@ type
   pamqp_basic_consume_t = ^amqp_basic_consume_t;
 
 const
-  AMQP_BASIC_CONSUME_OK_METHOD: amqp_method_number_t = $003C0015; (* *< basic.consume-ok method id @internal 60, 21; 3932181 *)
+  AMQP_BASIC_CONSUME_OK_METHOD=$003C0015; (* *< basic.consume-ok method id @internal 60, 21; 3932181 *)
 
   (* * basic.consume-ok method fields *)
 type
@@ -1104,7 +1104,7 @@ type
   pamqp_basic_consume_ok_t = ^amqp_basic_consume_ok_t;
 
 const
-  AMQP_BASIC_CANCEL_METHOD: amqp_method_number_t = $003C001E; (* *< basic.cancel method id @internal 60, 30; 3932190 *)
+  AMQP_BASIC_CANCEL_METHOD=$003C001E; (* *< basic.cancel method id @internal 60, 30; 3932190 *)
 
   (* * basic.cancel method fields *)
 type
@@ -1117,7 +1117,7 @@ type
   pamqp_basic_cancel_t = ^amqp_basic_cancel_t;
 
 const
-  AMQP_BASIC_CANCEL_OK_METHOD: amqp_method_number_t = $003C001F; (* *< basic.cancel-ok method id @internal 60, 31; 3932191 *)
+  AMQP_BASIC_CANCEL_OK_METHOD=$003C001F; (* *< basic.cancel-ok method id @internal 60, 31; 3932191 *)
 
   (* * basic.cancel-ok method fields *)
 type
@@ -1129,7 +1129,7 @@ type
   pamqp_basic_cancel_ok_t = ^amqp_basic_cancel_ok_t;
 
 const
-  AMQP_BASIC_PUBLISH_METHOD: amqp_method_number_t = $003C0028; (* *< basic.publish method id @internal 60, 40; 3932200 *)
+  AMQP_BASIC_PUBLISH_METHOD=$003C0028; (* *< basic.publish method id @internal 60, 40; 3932200 *)
 
   (* * basic.publish method fields *)
 type
@@ -1145,7 +1145,7 @@ type
   pamqp_basic_publish_t = ^amqp_basic_publish_t;
 
 const
-  AMQP_BASIC_RETURN_METHOD: amqp_method_number_t = $003C0032; (* *< basic.return method id @internal 60, 50; 3932210 *)
+  AMQP_BASIC_RETURN_METHOD=$003C0032; (* *< basic.return method id @internal 60, 50; 3932210 *)
 
   (* * basic.return method fields *)
 type
@@ -1160,7 +1160,7 @@ type
   pamqp_basic_return_t = ^amqp_basic_return_t;
 
 const
-  AMQP_BASIC_DELIVER_METHOD: amqp_method_number_t = $003C003C; (* *< basic.deliver method id @internal 60, 60; 3932220 *)
+  AMQP_BASIC_DELIVER_METHOD=$003C003C; (* *< basic.deliver method id @internal 60, 60; 3932220 *)
 
   (* * basic.deliver method fields *)
 type
@@ -1176,7 +1176,7 @@ type
   pamqp_basic_deliver_t = ^amqp_basic_deliver_t;
 
 const
-  AMQP_BASIC_GET_METHOD: amqp_method_number_t = $003C0046; (* *< basic.get method id @internal 60, 70; 3932230 *)
+  AMQP_BASIC_GET_METHOD=$003C0046; (* *< basic.get method id @internal 60, 70; 3932230 *)
 
   (* * basic.get method fields *)
 type
@@ -1190,7 +1190,7 @@ type
   pamqp_basic_get_t = ^amqp_basic_get_t;
 
 const
-  AMQP_BASIC_GET_OK_METHOD: amqp_method_number_t = $003C0047; (* *< basic.get-ok method id @internal 60, 71; 3932231 *)
+  AMQP_BASIC_GET_OK_METHOD=$003C0047; (* *< basic.get-ok method id @internal 60, 71; 3932231 *)
 
   (* * basic.get-ok method fields *)
 type
@@ -1206,7 +1206,7 @@ type
   pamqp_basic_get_ok_t = ^amqp_basic_get_ok_t;
 
 const
-  AMQP_BASIC_GET_EMPTY_METHOD: amqp_method_number_t = $003C0048; (* *< basic.get-empty method id @internal 60, 72; 3932232 *)
+  AMQP_BASIC_GET_EMPTY_METHOD=$003C0048; (* *< basic.get-empty method id @internal 60, 72; 3932232 *)
 
   (* * basic.get-empty method fields *)
 type
@@ -1218,7 +1218,7 @@ type
   pamqp_basic_get_empty_t = ^amqp_basic_get_empty_t;
 
 const
-  AMQP_BASIC_ACK_METHOD: amqp_method_number_t = $003C0050; (* *< basic.ack method id @internal 60, 80; 3932240 *)
+  AMQP_BASIC_ACK_METHOD=$003C0050; (* *< basic.ack method id @internal 60, 80; 3932240 *)
 
   (* * basic.ack method fields *)
 type
@@ -1231,7 +1231,7 @@ type
   pamqp_basic_ack_t = ^amqp_basic_ack_t;
 
 const
-  AMQP_BASIC_REJECT_METHOD: amqp_method_number_t = $003C005A; (* *< basic.reject method id @internal 60, 90; 3932250 *)
+  AMQP_BASIC_REJECT_METHOD=$003C005A; (* *< basic.reject method id @internal 60, 90; 3932250 *)
 
   (* * basic.reject method fields *)
 type
@@ -1244,7 +1244,7 @@ type
   pamqp_basic_reject_t = ^amqp_basic_reject_t;
 
 const
-  AMQP_BASIC_RECOVER_ASYNC_METHOD: amqp_method_number_t = $003C0064; (* *< basic.recover-async method id @internal 60, 100; 3932260 *)
+  AMQP_BASIC_RECOVER_ASYNC_METHOD=$003C0064; (* *< basic.recover-async method id @internal 60, 100; 3932260 *)
 
   (* * basic.recover-async method fields *)
 type
@@ -1256,7 +1256,7 @@ type
   pamqp_basic_recover_async_t = ^amqp_basic_recover_async_t;
 
 const
-  AMQP_BASIC_RECOVER_METHOD: amqp_method_number_t = $003C006E; (* *< basic.recover method id @internal 60, 110; 3932270 *)
+  AMQP_BASIC_RECOVER_METHOD=$003C006E; (* *< basic.recover method id @internal 60, 110; 3932270 *)
 
   (* * basic.recover method fields *)
 type
@@ -1268,7 +1268,7 @@ type
   pamqp_basic_recover_t = ^amqp_basic_recover_t;
 
 const
-  AMQP_BASIC_RECOVER_OK_METHOD: amqp_method_number_t = $003C006F; (* *< basic.recover-ok method id @internal 60, 111; 3932271 *)
+  AMQP_BASIC_RECOVER_OK_METHOD=$003C006F; (* *< basic.recover-ok method id @internal 60, 111; 3932271 *)
 
   (* * basic.recover-ok method fields *)
 type
@@ -1280,7 +1280,7 @@ type
   pamqp_basic_recover_ok_t = ^amqp_basic_recover_ok_t;
 
 const
-  AMQP_BASIC_NACK_METHOD: amqp_method_number_t = $003C0078; (* *< basic.nack method id @internal 60, 120; 3932280 *)
+  AMQP_BASIC_NACK_METHOD=$003C0078; (* *< basic.nack method id @internal 60, 120; 3932280 *)
 
   (* * basic.nack method fields *)
 type
@@ -1294,7 +1294,7 @@ type
   pamqp_basic_nack_t = ^amqp_basic_nack_t;
 
 const
-  AMQP_TX_SELECT_METHOD: amqp_method_number_t = $005A000A; (* *< tx.select method id @internal 90, 10; 5898250 *)
+  AMQP_TX_SELECT_METHOD=$005A000A; (* *< tx.select method id @internal 90, 10; 5898250 *)
 
   (* * tx.select method fields *)
 type
@@ -1306,7 +1306,7 @@ type
   pamqp_tx_select_t = ^amqp_tx_select_t;
 
 const
-  AMQP_TX_SELECT_OK_METHOD: amqp_method_number_t = $005A000B; (* *< tx.select-ok method id @internal 90, 11; 5898251 *)
+  AMQP_TX_SELECT_OK_METHOD=$005A000B; (* *< tx.select-ok method id @internal 90, 11; 5898251 *)
 
   (* * tx.select-ok method fields *)
 type
@@ -1318,7 +1318,7 @@ type
   pamqp_tx_select_ok_t = ^amqp_tx_select_ok_t;
 
 const
-  AMQP_TX_COMMIT_METHOD: amqp_method_number_t = $005A0014; (* *< tx.commit method id @internal 90, 20; 5898260 *)
+  AMQP_TX_COMMIT_METHOD=$005A0014; (* *< tx.commit method id @internal 90, 20; 5898260 *)
 
   (* * tx.commit method fields *)
 type
@@ -1330,7 +1330,7 @@ type
   pamqp_tx_commit_t = ^amqp_tx_commit_t;
 
 const
-  AMQP_TX_COMMIT_OK_METHOD: amqp_method_number_t = $005A0015; (* *< tx.commit-ok method id @internal 90, 21; 5898261 *)
+  AMQP_TX_COMMIT_OK_METHOD=$005A0015; (* *< tx.commit-ok method id @internal 90, 21; 5898261 *)
 
   (* * tx.commit-ok method fields *)
 type
@@ -1342,7 +1342,7 @@ type
   pamqp_tx_commit_ok_t = ^amqp_tx_commit_ok_t;
 
 const
-  AMQP_TX_ROLLBACK_METHOD: amqp_method_number_t = $005A001E; (* *< tx.rollback method id @internal 90, 30; 5898270 *)
+  AMQP_TX_ROLLBACK_METHOD=$005A001E; (* *< tx.rollback method id @internal 90, 30; 5898270 *)
 
   (* * tx.rollback method fields *)
 type
@@ -1354,7 +1354,7 @@ type
   pamqp_tx_rollback_t = ^amqp_tx_rollback_t;
 
 const
-  AMQP_TX_ROLLBACK_OK_METHOD: amqp_method_number_t = $005A001F; (* *< tx.rollback-ok method id @internal 90, 31; 5898271 *)
+  AMQP_TX_ROLLBACK_OK_METHOD=$005A001F; (* *< tx.rollback-ok method id @internal 90, 31; 5898271 *)
 
   (* * tx.rollback-ok method fields *)
 type
@@ -1366,7 +1366,7 @@ type
   pamqp_tx_rollback_ok_t = ^amqp_tx_rollback_ok_t;
 
 const
-  AMQP_CONFIRM_SELECT_METHOD: amqp_method_number_t = $0055000A; (* *< confirm.select method id @internal 85, 10; 5570570 *)
+  AMQP_CONFIRM_SELECT_METHOD=$0055000A; (* *< confirm.select method id @internal 85, 10; 5570570 *)
 
   (* * confirm.select method fields *)
 type
@@ -1378,7 +1378,7 @@ type
   pamqp_confirm_select_t = ^amqp_confirm_select_t;
 
 const
-  AMQP_CONFIRM_SELECT_OK_METHOD: amqp_method_number_t = $0055000B; (* *< confirm.select-ok method id @internal 85, 11; 5570571 *)
+  AMQP_CONFIRM_SELECT_OK_METHOD=$0055000B; (* *< confirm.select-ok method id @internal 85, 11; 5570571 *)
 
   (* * confirm.select-ok method fields *)
 type
@@ -1611,7 +1611,7 @@ function amqp_exchange_unbind(state: amqp_connection_state_t; channel: amqp_chan
   * @returns amqp_queue_declare_ok_t
 *)
 function amqp_queue_declare(state: amqp_connection_state_t; channel: amqp_channel_t; queue: amqp_bytes_t; passive: amqp_boolean_t; durable: amqp_boolean_t; exclusive: amqp_boolean_t;
-  auto_delete: amqp_boolean_t; arguments: amqp_table_t): pamqp_exchange_unbind_ok_t; cdecl;
+  auto_delete: amqp_boolean_t; arguments: amqp_table_t): pamqp_queue_declare_ok_t; cdecl;
 (* *
   * amqp_queue_bind
   *
@@ -1893,15 +1893,17 @@ type
 
     payload: record
       case integer of
-        0:
+        0:(method:amqp_method_t );   (* a method, use if frame_type == AMQP_FRAME_METHOD *)
+
+        1:
           (properties: record class_id: UInt16; (* < the class for the properties *)
             body_size: UInt64; (* < size of the body in bytes *)
             decoded: Pointer; (* < the decoded properties *)
             raw: amqp_bytes_t; (* < amqp-encoded properties structure *)
           end);
-        1:
-          (body_fragment: amqp_bytes_t); (* < a body fragment, use if frame_type == AMQP_FRAME_BODY *)
         2:
+          (body_fragment: amqp_bytes_t); (* < a body fragment, use if frame_type == AMQP_FRAME_BODY *)
+        3:
           (protocol_header: record transport_high: UInt8; (* < @internal first byte of handshake *)
             transport_low: UInt8; (* < @internal second byte of handshake *)
             protocol_version_major: UInt8; (* < @internal third byte of handshake *)
@@ -1988,6 +1990,12 @@ type
   amqp_delivery_mode_enum = (AMQP_DELIVERY_NONPERSISTENT = 1, (* Non - persistent message *)
     AMQP_DELIVERY_PERSISTENT = 2 (* persistent message *)
     );
+
+
+
+const  amqp_empty_bytes:amqp_bytes_t = ( len:0; bytes:nil );
+const  amqp_empty_table:amqp_table_t = ( num_entries:0;entries: nil );
+const  amqp_empty_array :amqp_array_t= ( num_entries:0;entries: nil );
 
   // {$INCLUDE <amqp_framing.h>}
   // (* *
