@@ -9,6 +9,21 @@
         <Projects Include="amqp_connect_timeout\amqp_connect_timeout.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="amqp_consumer\amqp_consumer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_exchange_declare\amqp_exchange_declare_.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_listen\amqp_listen.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_listenq\amqp_listenq.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_producer\amqp_producer.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +50,59 @@
     <Target Name="amqp_connect_timeout:Make">
         <MSBuild Projects="amqp_connect_timeout\amqp_connect_timeout.dproj" Targets="Make"/>
     </Target>
+    <Target Name="amqp_consumer">
+        <MSBuild Projects="amqp_consumer\amqp_consumer.dproj"/>
+    </Target>
+    <Target Name="amqp_consumer:Clean">
+        <MSBuild Projects="amqp_consumer\amqp_consumer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_consumer:Make">
+        <MSBuild Projects="amqp_consumer\amqp_consumer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_exchange_declare_">
+        <MSBuild Projects="amqp_exchange_declare\amqp_exchange_declare_.dproj"/>
+    </Target>
+    <Target Name="amqp_exchange_declare_:Clean">
+        <MSBuild Projects="amqp_exchange_declare\amqp_exchange_declare_.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_exchange_declare_:Make">
+        <MSBuild Projects="amqp_exchange_declare\amqp_exchange_declare_.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_listen">
+        <MSBuild Projects="amqp_listen\amqp_listen.dproj"/>
+    </Target>
+    <Target Name="amqp_listen:Clean">
+        <MSBuild Projects="amqp_listen\amqp_listen.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_listen:Make">
+        <MSBuild Projects="amqp_listen\amqp_listen.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_listenq">
+        <MSBuild Projects="amqp_listenq\amqp_listenq.dproj"/>
+    </Target>
+    <Target Name="amqp_listenq:Clean">
+        <MSBuild Projects="amqp_listenq\amqp_listenq.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_listenq:Make">
+        <MSBuild Projects="amqp_listenq\amqp_listenq.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_producer">
+        <MSBuild Projects="amqp_producer\amqp_producer.dproj"/>
+    </Target>
+    <Target Name="amqp_producer:Clean">
+        <MSBuild Projects="amqp_producer\amqp_producer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_producer:Make">
+        <MSBuild Projects="amqp_producer\amqp_producer.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="amqp_bind;amqp_connect_timeout"/>
+        <CallTarget Targets="amqp_bind;amqp_connect_timeout;amqp_consumer;amqp_exchange_declare_;amqp_listen;amqp_listenq;amqp_producer"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="amqp_bind:Clean;amqp_connect_timeout:Clean"/>
+        <CallTarget Targets="amqp_bind:Clean;amqp_connect_timeout:Clean;amqp_consumer:Clean;amqp_exchange_declare_:Clean;amqp_listen:Clean;amqp_listenq:Clean;amqp_producer:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="amqp_bind:Make;amqp_connect_timeout:Make"/>
+        <CallTarget Targets="amqp_bind:Make;amqp_connect_timeout:Make;amqp_consumer:Make;amqp_exchange_declare_:Make;amqp_listen:Make;amqp_listenq:Make;amqp_producer:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -2,8 +2,9 @@ unit uRabbitMQ.Utils;
 
 interface
 
-uses uRabbitMQ;
+uses SysUtils, Windows, System.Character, uRabbitMQ;
 
+procedure amqp_dump(const buffer:Pointer; len:size_t);
 
 function now_microseconds:UInt64;
 
@@ -15,13 +16,9 @@ procedure die_on_error(x: Integer; context: AnsiString);
 
 procedure die_on_amqp_error(x: amqp_rpc_reply_t; context: AnsiString);
 
-// procedure dump_row(count: Cardinal; numinrow: Integer; chs: PInteger);
-
-
 
 implementation
 
-uses SysUtils, Windows;
 
 function now_microseconds:UInt64;
 var
@@ -83,5 +80,105 @@ begin
   end;
   Halt(1);
 end;
+
+function IsPrint(C:Char):Boolean;
+begin
+  Result:= C.IsLetterOrDigit or C.IsSeparator or C.IsSymbol or C.IsNumber or C.IsPunctuation or C.IsWhiteSpace;
+end;
+
+procedure dump_row(count:UInt32; numinrow:Integer; chs:PIntegerArray);
+var
+  i:Integer;
+begin
+  Write(Format('%08lX:', [count - numinrow]));
+
+  if (numinrow > 0) then
+  begin
+    for i := 0 to numinrow-1 do
+    begin
+      if (i = 8) then
+        Write(' :');
+
+      Write(Format(' %02X', [Char(chs[i])]));
+    end;
+    for i:= numinrow to 16-1 do
+    begin
+      if (i = 8) then
+        Write(' :');
+      Write('   ');
+    end;
+    WriteLn('  ');
+    for i := 0 to numinrow-1 do
+    begin
+      if (IsPrint(Char(chs[i]))) then
+        Write(Char(chs[i]))
+      else
+        Write('.');
+    end;
+  end;
+  WriteLn;
+end;
+
+function rows_eq(a, b:PIntegerArray):Boolean;
+var
+  i:Integer;
+begin
+  for i:=0 to 16-1 do
+    if (a[i] <> b[i]) then Exit(False);
+  Result:=True;
+end;
+
+procedure amqp_dump(const buffer:Pointer; len:size_t);
+var
+  buf:PAnsiChar;
+  count:UInt32;
+  numinrow :Integer;
+  chs:array[0..16-1] of Integer;
+  oldchs:array[0..16-1] of Integer;
+  showed_dots:Boolean;
+  i:size_t;
+  ch:AnsiChar;
+  j:Integer;
+begin
+  buf := buffer;
+  count := 0;
+  numinrow := 0;
+  showed_dots := False;
+  for i := 0 to len-1 do
+  begin
+    ch := buf[i];
+
+    if (numinrow = 16) then
+    begin
+      if (rows_eq(@oldchs, @chs)) then
+      begin
+        if (not showed_dots) then
+        begin
+          showed_dots := True;
+          WriteLn('          .. .. .. .. .. .. .. .. : .. .. .. .. .. .. .. ..');
+        end
+      end else
+      begin
+        showed_dots := False;
+        dump_row(count, numinrow, @chs);
+      end;
+
+      for j:=0 to 16-1 do
+        oldchs[j] := chs[j];
+
+      numinrow := 0;
+    end;
+
+    Inc(count);
+    chs[numinrow] := Ord(ch);
+    Inc(numinrow);
+  end;
+
+  dump_row(count, numinrow, @chs);
+
+  if (numinrow <> 0) then
+    WriteLn(Format('%08lX:', [count]));
+end;
+
 
 end.

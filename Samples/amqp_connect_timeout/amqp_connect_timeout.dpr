@@ -2,7 +2,6 @@ program amqp_connect_timeout;
 
 {$APPTYPE CONSOLE}
 
-{$R *.res}
 
 uses
   System.SysUtils,

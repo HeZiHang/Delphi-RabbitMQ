@@ -5,15 +5,15 @@ interface
 const
   LIBFILE = 'rabbitmq.dll';
 
-const
-  POOL_TABLE_SIZE = 16;
+  // const
+  // POOL_TABLE_SIZE = 16;
 
-const
-  HEADER_SIZE = 7;
-  FOOTER_SIZE = 1;
-  (* 7 bytes up front, then payload, then 1 byte footer *)
-
-  AMQP_PSEUDOFRAME_PROTOCOL_HEADER = 'A';
+  // const
+  // HEADER_SIZE = 7;
+  // FOOTER_SIZE = 1;
+  // (* 7 bytes up front, then payload, then 1 byte footer *)
+  //
+  // AMQP_PSEUDOFRAME_PROTOCOL_HEADER = 'A';
 
 type
   ssize_t = NativeInt;
@@ -123,7 +123,7 @@ type
   *)
   pamqp_bytes_t = ^amqp_bytes_t_;
 
-  amqp_bytes_t_ = packed record
+  amqp_bytes_t_ = record
     len: size_t; (* *< length of the buffer in bytes *)
     bytes: Pointer; (* *< pointer to the beginning of the buffer *)
   end;
@@ -357,38 +357,39 @@ type
   amqp_connection_state_enum_ = (CONNECTION_STATE_IDLE = 0, CONNECTION_STATE_INITIAL, CONNECTION_STATE_HEADER, CONNECTION_STATE_BODY);
   amqp_connection_state_enum = amqp_connection_state_enum_;
 
-  amqp_connection_state_t = ^amqp_connection_state_t_;
-
-  amqp_connection_state_t_ = record
-    pool_table: array [0 .. Pred(POOL_TABLE_SIZE)] of pamqp_pool_table_entry_t;
-    state: amqp_connection_state_enum;
-    channel_max: integer;
-    frame_max: integer;
-    (* Heartbeat interval in seconds. If this is <= 0, then heartbeats are not
-      * enabled, and next_recv_heartbeat and next_send_heartbeat are set to
-      * infinite *)
-    heartbeat: integer;
-    next_recv_heartbeat: amqp_time_t;
-    next_send_heartbeat: amqp_time_t;
-    (* buffer for holding frame headers.  Allows us to delay allocating
-      * the raw frame buffer until the type, channel, and size are all known
-    *)
-    header_buffer: array [0 .. Pred(HEADER_SIZE + 1)] of char;
-    inbound_buffer: amqp_bytes_t;
-    inbound_offset: size_t;
-    target_size: size_t;
-    outbound_buffer: amqp_bytes_t;
-    socket: pamqp_socket_t;
-    sock_inbound_buffer: amqp_bytes_t;
-    sock_inbound_offset: size_t;
-    sock_inbound_limit: size_t;
-    first_queued_frame: pamqp_link_t;
-    last_queued_frame: pamqp_link_t;
-    most_recent_api_result: amqp_rpc_reply_t;
-    server_properties: amqp_table_t;
-    client_properties: amqp_table_t;
-    properties_pool: amqp_pool_t;
-  end;
+  amqp_connection_state_t = Pointer;
+  // amqp_connection_state_t = ^amqp_connection_state_t_;
+  //
+  // amqp_connection_state_t_ = record
+  // pool_table: array [0 .. Pred(POOL_TABLE_SIZE)] of pamqp_pool_table_entry_t;
+  // state: amqp_connection_state_enum;
+  // channel_max: integer;
+  // frame_max: integer;
+  // (* Heartbeat interval in seconds. If this is <= 0, then heartbeats are not
+  // * enabled, and next_recv_heartbeat and next_send_heartbeat are set to
+  // * infinite *)
+  // heartbeat: integer;
+  // next_recv_heartbeat: amqp_time_t;
+  // next_send_heartbeat: amqp_time_t;
+  // (* buffer for holding frame headers.  Allows us to delay allocating
+  // * the raw frame buffer until the type, channel, and size are all known
+  // *)
+  // header_buffer: array [0 .. Pred(HEADER_SIZE + 1)] of char;
+  // inbound_buffer: amqp_bytes_t;
+  // inbound_offset: size_t;
+  // target_size: size_t;
+  // outbound_buffer: amqp_bytes_t;
+  // socket: pamqp_socket_t;
+  // sock_inbound_buffer: amqp_bytes_t;
+  // sock_inbound_offset: size_t;
+  // sock_inbound_limit: size_t;
+  // first_queued_frame: pamqp_link_t;
+  // last_queued_frame: pamqp_link_t;
+  // most_recent_api_result: amqp_rpc_reply_t;
+  // server_properties: amqp_table_t;
+  // client_properties: amqp_table_t;
+  // properties_pool: amqp_pool_t;
+  // end;
 
 {$ENDREGION}
 {$REGION 'amqp_framing.h'}
@@ -2176,9 +2177,7 @@ procedure amqp_pool_alloc_bytes(pool: pamqp_pool_t; amount: size_t; output: pamq
   *
   * \since v0.1
 *)
-function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t;{$IFNDEF WIN32} cdecl;{$ENDIF}
-
-
+function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
 (* *
   * Duplicates an amqp_bytes_t buffer.
   *
@@ -2196,8 +2195,7 @@ function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t;{$IFNDEF WIN32}
   * \since v0.1
 *)
 
-function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl;{$ENDIF}
-
+function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
 (* *
   * Allocates a amqp_bytes_t buffer
   *
@@ -2213,8 +2211,7 @@ function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF WIN32}
   * \since v0.1
 *)
 
-function amqp_bytes_malloc(amount: size_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl;{$ENDIF}
-
+function amqp_bytes_malloc(amount: size_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
 (* *
   * Frees an amqp_bytes_t buffer
   *
@@ -2425,7 +2422,7 @@ function amqp_destroy_connection(state: amqp_connection_state_t): integer; cdecl
   * \since v0.1
 *)
 
-function amqp_handle_input(state: amqp_connection_state_t; received_data: amqp_bytes_t; decoded_frame: pamqp_frame_t): integer; cdecl;
+function amqp_handle_input(state: amqp_connection_state_t; received_data: amqp_bytes_t; var decoded_frame: amqp_frame_t): integer; cdecl;
 
 (* *
   * Check to see if connection memory can be released
@@ -2680,7 +2677,7 @@ function amqp_frames_enqueued(state: amqp_connection_state_t): amqp_boolean_t; c
   * \since v0.1
 *)
 
-function amqp_simple_wait_frame(state: amqp_connection_state_t; decoded_frame: pamqp_frame_t): integer; cdecl;
+function amqp_simple_wait_frame(state: amqp_connection_state_t; var decoded_frame: amqp_frame_t): integer; cdecl;
 
 (* *
   * Read a single amqp_frame_t with a timeout.
@@ -2744,7 +2741,7 @@ function amqp_simple_wait_frame(state: amqp_connection_state_t; decoded_frame: p
   * \since v0.4.0
 *)
 
-function amqp_simple_wait_frame_noblock(state: amqp_connection_state_t; decoded_frame: pamqp_frame_t; tv: ptimeval): integer; cdecl;
+function amqp_simple_wait_frame_noblock(state: amqp_connection_state_t; var decoded_frame: amqp_frame_t; tv: ptimeval): integer; cdecl;
 
 (* *
   * Waits for a specific method from the broker
@@ -2786,7 +2783,7 @@ function amqp_simple_wait_frame_noblock(state: amqp_connection_state_t; decoded_
   * \since v0.1
 *)
 
-function amqp_simple_wait_method(state: amqp_connection_state_t; expected_channel: amqp_channel_t; expected_method: amqp_method_number_t; output: pamqp_method_t): integer; cdecl;
+function amqp_simple_wait_method(state: amqp_connection_state_t; expected_channel: amqp_channel_t; expected_method: amqp_method_number_t; var output: amqp_method_t): integer; cdecl;
 
 (* *
   * Sends a method to the broker
@@ -3295,7 +3292,7 @@ function amqp_encode_table(encoded: amqp_bytes_t; input: pamqp_table_t; var offs
   * \since v0.4.0
 *)
 
-function amqp_table_clone(const original: pamqp_table_t; clone: pamqp_table_t; pool: pamqp_pool_t): integer; cdecl;
+function amqp_table_clone(const original: pamqp_table_t; var clone: amqp_table_t; pool: pamqp_pool_t): integer; cdecl;
 
 (* *
   * A message object
@@ -3332,7 +3329,7 @@ type
     * \since v0.4.0
   *)
 
-function amqp_read_message(state: amqp_connection_state_t; channel: amqp_channel_t; message: pamqp_message_t; flags: integer): amqp_rpc_reply_t; cdecl;
+function amqp_read_message(state: amqp_connection_state_t; channel: amqp_channel_t; var &message: amqp_message_t; flags: integer): amqp_rpc_reply_t; cdecl;
 
 (* *
   * Frees memory associated with a amqp_message_t allocated in amqp_read_message
@@ -3395,7 +3392,7 @@ type
     * \since v0.4.0
   *)
 
-function amqp_consume_message(state: amqp_connection_state_t; envelope: pamqp_envelope_t; timeout: ptimeval; flags: integer): amqp_rpc_reply_t; cdecl;
+function amqp_consume_message(state: amqp_connection_state_t; var envelope: amqp_envelope_t; timeout: ptimeval; flags: integer): amqp_rpc_reply_t; cdecl;
 
 (* *
   * Frees memory associated with a amqp_envelope_t allocated in amqp_consume_message()
@@ -3405,7 +3402,7 @@ function amqp_consume_message(state: amqp_connection_state_t; envelope: pamqp_en
   * \since v0.4.0
 *)
 
-procedure amqp_destroy_envelope(envelope: pamqp_envelope_t); cdecl;
+procedure amqp_destroy_envelope(var envelope: amqp_envelope_t); cdecl;
 
 (* *
   * Parameters used to connect to the RabbitMQ broker
@@ -3438,7 +3435,7 @@ type
     * \since v0.2
   *)
 
-procedure amqp_default_connection_info(parsed: pamqp_connection_info); cdecl;
+procedure amqp_default_connection_info(var parsed: amqp_connection_info); cdecl;
 
 (* *
   * Parse a connection URL
@@ -3467,7 +3464,7 @@ procedure amqp_default_connection_info(parsed: pamqp_connection_info); cdecl;
   * \since v0.2
 *)
 
-function amqp_parse_url(URL: PAnsiChar; parsed: pamqp_connection_info): integer; cdecl;
+function amqp_parse_url(URL: PAnsiChar; var parsed: amqp_connection_info): integer; cdecl;
 
 (* socket API *)
 
@@ -3654,22 +3651,39 @@ function amqp_encode_properties; external LIBFILE;
 function amqp_channel_open; external LIBFILE;
 
 function amqp_channel_flow; external LIBFILE;
+
 function amqp_exchange_declare; external LIBFILE;
+
 function amqp_exchange_delete; external LIBFILE;
+
 function amqp_exchange_bind; external LIBFILE;
+
 function amqp_exchange_unbind; external LIBFILE;
+
 function amqp_queue_declare; external LIBFILE;
+
 function amqp_queue_bind; external LIBFILE;
+
 function amqp_queue_purge; external LIBFILE;
+
 function amqp_queue_delete; external LIBFILE;
+
 function amqp_queue_unbind; external LIBFILE;
+
 function amqp_basic_qos; external LIBFILE;
+
 function amqp_basic_consume; external LIBFILE;
+
 function amqp_basic_cancel; external LIBFILE;
+
 function amqp_basic_recover; external LIBFILE;
+
 function amqp_tx_select; external LIBFILE;
+
 function amqp_tx_commit; external LIBFILE;
+
 function amqp_tx_rollback; external LIBFILE;
+
 function amqp_confirm_select; external LIBFILE;
 
 function amqp_version_number; external LIBFILE;
@@ -3687,33 +3701,35 @@ function amqp_pool_alloc; external LIBFILE;
 procedure amqp_pool_alloc_bytes; external LIBFILE;
 
 {$IFDEF WIN32}
-function amqp_cstring_bytes_c(const cstr: PAnsiChar): uint64;cdecl; external LIBFILE name 'amqp_cstring_bytes';
-function amqp_bytes_malloc_dup_c(src: amqp_bytes_t): uint64; cdecl; external LIBFILE name 'amqp_bytes_malloc_dup';
-function amqp_bytes_malloc_c(amount: size_t): uint64; cdecl; external LIBFILE name 'amqp_bytes_malloc';
+function amqp_cstring_bytes_c(const cstr: PAnsiChar): UInt64; cdecl; external LIBFILE name 'amqp_cstring_bytes';
+
+function amqp_bytes_malloc_dup_c(src: amqp_bytes_t): UInt64; cdecl; external LIBFILE name 'amqp_bytes_malloc_dup';
+
+function amqp_bytes_malloc_c(amount: size_t): UInt64; cdecl; external LIBFILE name 'amqp_bytes_malloc';
 
 function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t;
 begin
- PUInt64(@Result)^ := amqp_cstring_bytes_c(cstr);
+  PUInt64(@Result)^ := amqp_cstring_bytes_c(cstr);
 end;
 
 function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t;
 begin
- PUInt64(@Result)^ := amqp_bytes_malloc_dup_c(src);
+  PUInt64(@Result)^ := amqp_bytes_malloc_dup_c(src);
 end;
 
 function amqp_bytes_malloc(amount: size_t): amqp_bytes_t;
 begin
- PUInt64(@Result)^ := amqp_bytes_malloc_c(amount);
+  PUInt64(@Result)^ := amqp_bytes_malloc_c(amount);
 end;
 
 {$ELSE}
 function amqp_cstring_bytes; external LIBFILE;
+
 function amqp_bytes_malloc_dup; external LIBFILE;
+
 function amqp_bytes_malloc; external LIBFILE;
+
 {$ENDIF}
-
-
-
 procedure amqp_bytes_free; external LIBFILE;
 
 function amqp_new_connection; external LIBFILE;
@@ -3819,6 +3835,7 @@ function amqp_get_socket; external LIBFILE;
 function amqp_get_server_properties; external LIBFILE;
 
 function amqp_get_client_properties; external LIBFILE;
+
 function amqp_tcp_socket_new; external LIBFILE;
 
 procedure amqp_tcp_socket_set_sockfd; external LIBFILE;
