@@ -24,6 +24,15 @@
         <Projects Include="amqp_producer\amqp_producer.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="amqp_rpc_sendstring_client\amqp_rpc_sendstring_client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_sendstring\amqp_sendstring.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="amqp_unbind\amqp_unbind.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +104,41 @@
     <Target Name="amqp_producer:Make">
         <MSBuild Projects="amqp_producer\amqp_producer.dproj" Targets="Make"/>
     </Target>
+    <Target Name="amqp_rpc_sendstring_client">
+        <MSBuild Projects="amqp_rpc_sendstring_client\amqp_rpc_sendstring_client.dproj"/>
+    </Target>
+    <Target Name="amqp_rpc_sendstring_client:Clean">
+        <MSBuild Projects="amqp_rpc_sendstring_client\amqp_rpc_sendstring_client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_rpc_sendstring_client:Make">
+        <MSBuild Projects="amqp_rpc_sendstring_client\amqp_rpc_sendstring_client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_sendstring">
+        <MSBuild Projects="amqp_sendstring\amqp_sendstring.dproj"/>
+    </Target>
+    <Target Name="amqp_sendstring:Clean">
+        <MSBuild Projects="amqp_sendstring\amqp_sendstring.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_sendstring:Make">
+        <MSBuild Projects="amqp_sendstring\amqp_sendstring.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="amqp_unbind">
+        <MSBuild Projects="amqp_unbind\amqp_unbind.dproj"/>
+    </Target>
+    <Target Name="amqp_unbind:Clean">
+        <MSBuild Projects="amqp_unbind\amqp_unbind.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="amqp_unbind:Make">
+        <MSBuild Projects="amqp_unbind\amqp_unbind.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="amqp_bind;amqp_connect_timeout;amqp_consumer;amqp_exchange_declare_;amqp_listen;amqp_listenq;amqp_producer"/>
+        <CallTarget Targets="amqp_bind;amqp_connect_timeout;amqp_consumer;amqp_exchange_declare_;amqp_listen;amqp_listenq;amqp_producer;amqp_rpc_sendstring_client;amqp_sendstring;amqp_unbind"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="amqp_bind:Clean;amqp_connect_timeout:Clean;amqp_consumer:Clean;amqp_exchange_declare_:Clean;amqp_listen:Clean;amqp_listenq:Clean;amqp_producer:Clean"/>
+        <CallTarget Targets="amqp_bind:Clean;amqp_connect_timeout:Clean;amqp_consumer:Clean;amqp_exchange_declare_:Clean;amqp_listen:Clean;amqp_listenq:Clean;amqp_producer:Clean;amqp_rpc_sendstring_client:Clean;amqp_sendstring:Clean;amqp_unbind:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="amqp_bind:Make;amqp_connect_timeout:Make;amqp_consumer:Make;amqp_exchange_declare_:Make;amqp_listen:Make;amqp_listenq:Make;amqp_producer:Make"/>
+        <CallTarget Targets="amqp_bind:Make;amqp_connect_timeout:Make;amqp_consumer:Make;amqp_exchange_declare_:Make;amqp_listen:Make;amqp_listenq:Make;amqp_producer:Make;amqp_rpc_sendstring_client:Make;amqp_sendstring:Make;amqp_unbind:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
