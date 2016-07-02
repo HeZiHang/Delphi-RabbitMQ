@@ -2,9 +2,20 @@ unit uRabbitMQ;
 
 interface
 
+{$REGION 'Conditional-directive'}
+  {$IF CompilerVersion<16}
+    {$DEFINE CPU32BITS}
+  {$ELSE}
+    {$IF CompilerVersion<22}
+      {$IF defined(CPU386) or defined(CPUX86)}
+        {$DEFINE CPU32BITS}
+      {$ENDIF}
+    {$ENDIF}
+  {$ENDIF}
+{$ENDREGION}
+
 const
   LIBFILE = 'rabbitmq.dll';
-
   // const
   // POOL_TABLE_SIZE = 16;
 
@@ -16,8 +27,22 @@ const
   // AMQP_PSEUDOFRAME_PROTOCOL_HEADER = 'A';
 
 type
-  ssize_t = NativeInt;
-  size_t = NativeInt;
+  Int8=SmallInt;
+  UInt8=Byte;
+  Int16=ShortInt;
+  UInt16=Word;
+  Int32=Integer;
+  UInt32=Cardinal;
+  PUInt64=^UInt64;
+
+{$IFDEF CPU32BITS}
+  ssize_t = Int32;
+  size_t = Int32;
+{$ELSE}
+  ssize_t = Int64;
+  size_t = Int64;
+{$ENDIF}
+
 
 {$REGION 'amqp_time.h'}
 
@@ -2177,7 +2202,7 @@ procedure amqp_pool_alloc_bytes(pool: pamqp_pool_t; amount: size_t; output: pamq
   *
   * \since v0.1
 *)
-function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
+function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t; {$IFNDEF CPU32BITS} cdecl; {$ENDIF}
 (* *
   * Duplicates an amqp_bytes_t buffer.
   *
@@ -2195,7 +2220,7 @@ function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t; {$IFNDEF WIN32
   * \since v0.1
 *)
 
-function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
+function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF CPU32BITS} cdecl; {$ENDIF}
 (* *
   * Allocates a amqp_bytes_t buffer
   *
@@ -2211,7 +2236,7 @@ function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t; {$IFNDEF WIN32}
   * \since v0.1
 *)
 
-function amqp_bytes_malloc(amount: size_t): amqp_bytes_t; {$IFNDEF WIN32} cdecl; {$ENDIF}
+function amqp_bytes_malloc(amount: size_t): amqp_bytes_t; {$IFNDEF CPU32BITS} cdecl; {$ENDIF}
 (* *
   * Frees an amqp_bytes_t buffer
   *
@@ -3700,7 +3725,7 @@ function amqp_pool_alloc; external LIBFILE;
 
 procedure amqp_pool_alloc_bytes; external LIBFILE;
 
-{$IFDEF WIN32}
+{$IFDEF CPU32BITS}
 function amqp_cstring_bytes_c(const cstr: PAnsiChar): UInt64; cdecl; external LIBFILE name 'amqp_cstring_bytes';
 
 function amqp_bytes_malloc_dup_c(src: amqp_bytes_t): UInt64; cdecl; external LIBFILE name 'amqp_bytes_malloc_dup';
@@ -3709,17 +3734,17 @@ function amqp_bytes_malloc_c(amount: size_t): UInt64; cdecl; external LIBFILE na
 
 function amqp_cstring_bytes(const cstr: PAnsiChar): amqp_bytes_t;
 begin
-  PUInt64(@Result)^ := amqp_cstring_bytes_c(cstr);
+  PUInt64(@Result)^:=amqp_cstring_bytes_c(cstr);
 end;
 
 function amqp_bytes_malloc_dup(src: amqp_bytes_t): amqp_bytes_t;
 begin
-  PUInt64(@Result)^ := amqp_bytes_malloc_dup_c(src);
+  PUInt64(@Result)^:=amqp_bytes_malloc_dup_c(src);
 end;
 
 function amqp_bytes_malloc(amount: size_t): amqp_bytes_t;
 begin
-  PUInt64(@Result)^ := amqp_bytes_malloc_c(amount);
+  PUInt64(@Result)^:=amqp_bytes_malloc_c(amount);
 end;
 
 {$ELSE}
@@ -3730,6 +3755,7 @@ function amqp_bytes_malloc_dup; external LIBFILE;
 function amqp_bytes_malloc; external LIBFILE;
 
 {$ENDIF}
+
 procedure amqp_bytes_free; external LIBFILE;
 
 function amqp_new_connection; external LIBFILE;
