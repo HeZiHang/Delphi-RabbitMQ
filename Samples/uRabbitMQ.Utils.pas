@@ -2,7 +2,7 @@ unit uRabbitMQ.Utils;
 
 interface
 
-uses SysUtils, Windows, System.Character, uRabbitMQ;
+uses SysUtils, Windows, uRabbitMQ;
 
 procedure amqp_dump(const buffer:Pointer; len:size_t);
 
@@ -83,7 +83,7 @@ end;
 
 function IsPrint(C:Char):Boolean;
 begin
-  Result:= C.IsLetterOrDigit or C.IsSeparator or C.IsSymbol or C.IsNumber or C.IsPunctuation or C.IsWhiteSpace;
+  Result:= C in [' '..'~'];
 end;
 
 procedure dump_row(count:UInt32; numinrow:Integer; chs:PIntegerArray);

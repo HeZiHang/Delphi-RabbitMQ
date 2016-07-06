@@ -17,7 +17,7 @@ var
   socket: pamqp_socket_t;
   conn: amqp_connection_state_t;
 
-  props:  amqp_basic_properties_t ;
+  props: amqp_basic_properties_t;
 begin
   if (ParamCount < 6) then
   begin
@@ -42,16 +42,11 @@ begin
   if status <> 0 then
     die('opening TCP socket', []);
 
-  die_on_amqp_error(amqp_login(conn, '/', 0, 131072, 0, AMQP_SASL_METHOD_PLAIN, 'guest', 'guest'),
-                    'Logging in');
+  die_on_amqp_error(amqp_login(conn, '/', 0, 131072, 0, AMQP_SASL_METHOD_PLAIN, 'guest', 'guest'), 'Logging in');
   amqp_channel_open(conn, 1);
   die_on_amqp_error(amqp_get_rpc_reply(conn), 'Opening channel');
 
-  amqp_queue_unbind(conn, 1,
-                    amqp_cstring_bytes(PAnsiChar(queue)),
-                    amqp_cstring_bytes(PAnsiChar(exchange)),
-                    amqp_cstring_bytes(PAnsiChar(bindingkey)),
-                    amqp_empty_table);
+  amqp_queue_unbind(conn, 1, amqp_cstring_bytes(PAnsiChar(queue)), amqp_cstring_bytes(PAnsiChar(exchange)), amqp_cstring_bytes(PAnsiChar(bindingkey)), amqp_empty_table);
   die_on_amqp_error(amqp_get_rpc_reply(conn), 'Unbinding');
 
   die_on_amqp_error(amqp_channel_close(conn, 1, AMQP_REPLY_SUCCESS), 'Closing channel');
@@ -61,6 +56,5 @@ begin
 end;
 
 begin
-  Main;
+  main;
 end.
-

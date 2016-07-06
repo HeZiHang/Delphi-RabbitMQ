@@ -16,8 +16,9 @@ var
   queue: AnsiString;
   socket: pamqp_socket_t;
   conn: amqp_connection_state_t;
-begin
 
+  t:amqp_bytes_t;
+begin
   socket := nil;
   if (ParamCount < 6) then
   begin

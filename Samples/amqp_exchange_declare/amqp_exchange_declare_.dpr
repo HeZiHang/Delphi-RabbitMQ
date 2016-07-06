@@ -32,20 +32,17 @@ begin
 
   socket := amqp_tcp_socket_new(conn);
   if not Assigned(socket) then
-    die('creating TCP socket',[]);
-
+    die('creating TCP socket', []);
 
   status := amqp_socket_open(socket, PAnsiChar(hostname), port);
-  if (status<>0) then
-    die('opening TCP socket',[]);
+  if (status <> 0) then
+    die('opening TCP socket', []);
 
-  die_on_amqp_error(amqp_login(conn, '/', 0, 131072, 0, AMQP_SASL_METHOD_PLAIN, 'guest', 'guest'),
-                    'Logging in');
+  die_on_amqp_error(amqp_login(conn, '/', 0, 131072, 0, AMQP_SASL_METHOD_PLAIN, 'guest', 'guest'), 'Logging in');
   amqp_channel_open(conn, 1);
   die_on_amqp_error(amqp_get_rpc_reply(conn), 'Opening channel');
 
-  amqp_exchange_declare(conn, 1, amqp_cstring_bytes(PAnsiChar(exchange)), amqp_cstring_bytes(PAnsiChar(exchangetype)),
-                        0, 0, 0, 0, amqp_empty_table);
+  amqp_exchange_declare(conn, 1, amqp_cstring_bytes(PAnsiChar(exchange)), amqp_cstring_bytes(PAnsiChar(exchangetype)), 0, 0, 0, 0, amqp_empty_table);
   die_on_amqp_error(amqp_get_rpc_reply(conn), 'Declaring exchange');
 
   die_on_amqp_error(amqp_channel_close(conn, 1, AMQP_REPLY_SUCCESS), 'Closing channel');
@@ -55,5 +52,6 @@ begin
 end;
 
 begin
-  Main;
+  main;
+
 end.
